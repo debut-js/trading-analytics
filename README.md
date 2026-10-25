@@ -264,7 +264,7 @@ await app.listen({ port: 3000 });
 Install from GitHub at a tag:
 
 ```bash
-npm i github:debut-js/trading-analytics#v0.1.2
+npm i github:debut-js/trading-analytics#v0.1.3
 ```
 
 The built `dist/` is committed, so nothing is compiled on install. Run `npm run build` before committing a change to

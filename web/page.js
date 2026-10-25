@@ -389,14 +389,16 @@
 
   /* ---------- hero: the curve on the background, ending in the figure ---------- */
   const HERO = { values: null, key: '', counted: false };
-  /** Catmull-Rom through the points as cubic Béziers: a calm line for the background (the chart below stays point to point). */
+  /** Catmull-Rom through the points as cubic Béziers. The control points stay within each segment's own values, so the
+   *  line never overshoots a point: a drawdown that touches 0% doesn't bulge above it. */
   function smooth(p) {
     const f = (q) => `${q[0].toFixed(1)},${q[1].toFixed(1)}`;
     if (p.length < 3) return 'M' + p.map(f).join('L');
     let d = 'M' + f(p[0]);
     for (let i = 0; i < p.length - 1; i++) {
       const p0 = p[i - 1] || p[i], p1 = p[i], p2 = p[i + 1], p3 = p[i + 2] || p2;
-      d += `C${f([p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6])} ${f([p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6])} ${f(p2)}`;
+      const lo = Math.min(p1[1], p2[1]), hi = Math.max(p1[1], p2[1]), c = (v) => Math.min(hi, Math.max(lo, v));
+      d += `C${f([p1[0] + (p2[0] - p0[0]) / 6, c(p1[1] + (p2[1] - p0[1]) / 6)])} ${f([p2[0] - (p3[0] - p1[0]) / 6, c(p2[1] - (p3[1] - p1[1]) / 6)])} ${f(p2)}`;
     }
     return d;
   }

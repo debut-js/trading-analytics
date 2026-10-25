@@ -1,6 +1,6 @@
 {
   "name": "trading-analytics",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A live, public analytics page for a Binance and Bybit futures account, from read-only API keys.",
   "license": "MIT",
   "type": "module",
