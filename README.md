@@ -5,7 +5,7 @@
 **A live, public analytics page for your Binance and Bybit futures account.**<br>
 Add read-only keys, run one command, and share the link.
 
-[**Live demo → backticks.io**](https://backticks.io)&nbsp;&nbsp;·&nbsp;&nbsp;[Quick start](#quick-start)&nbsp;&nbsp;·&nbsp;&nbsp;[What's on the page](#whats-on-the-page)&nbsp;&nbsp;·&nbsp;&nbsp;[Make it yours](#make-it-yours-without-forking)
+[**Live demo → backticks.io**](https://backticks.io)&nbsp;&nbsp;·&nbsp;&nbsp;[Quick start](#quick-start)&nbsp;&nbsp;·&nbsp;&nbsp;[Is it safe?](#is-it-safe-to-give-it-my-keys)&nbsp;&nbsp;·&nbsp;&nbsp;[What's on the page](#whats-on-the-page)&nbsp;&nbsp;·&nbsp;&nbsp;[Make it yours](#make-it-yours-without-forking)
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-3ddc97?style=flat-square)](LICENSE)
 ![Node](https://img.shields.io/badge/node-%E2%89%A518.18-3ddc97?style=flat-square)
@@ -32,9 +32,20 @@ It runs on read-only keys, on your own server. Visitors only ever see the comput
 - **English and Russian**, desktop and phone, dark.
 - **No tracking, no framework, no build step** for the page. A strict CSP with no inline scripts.
 
+> **The live demo** at [backticks.io](https://backticks.io) is the author's own account, served by this package with a
+> thin branded layer on top (see [Make it yours](#make-it-yours-without-forking)).
+
 <br>
 
 ## Quick start
+
+**Try it in ten seconds**, no keys and no clone. It serves a bundled sample report on http://localhost:3000:
+
+```bash
+DEMO=1 npx github:debut-js/trading-analytics
+```
+
+**With your account:**
 
 ```bash
 git clone https://github.com/debut-js/trading-analytics.git
@@ -45,7 +56,18 @@ npm install && npm start
 
 Open **http://localhost:3000**.
 
-No keys yet? `npm run demo` serves a bundled sample report.
+<details>
+<summary><b>Without cloning</b></summary>
+
+<br>
+
+Put a `.env` in any folder (copy [`.env.example`](.env.example)), then run this from that folder:
+
+```bash
+npx github:debut-js/trading-analytics
+```
+
+</details>
 
 <details>
 <summary><b>With Docker</b></summary>
@@ -68,7 +90,24 @@ Create **read-only** keys. The page never needs to trade or withdraw.
 | **Binance** | API Management → Create API | *Enable Reading* only. An IP restriction is recommended. |
 | **Bybit** *(optional)* | API → Create New Key → System-generated | *Read-Only* |
 
-The keys stay in `.env` on the server. The browser gets only the computed report, which is anonymous: no keys, no account IDs, no server address.
+The keys stay in `.env` on your machine or server. The browser gets only the computed report, which is anonymous: no keys, no account IDs, no server address.
+
+<br>
+
+## Is it safe to give it my keys?
+
+You don't give them to anyone: it runs on your machine, and the code is all here.
+
+- **Read-only by design.** Every exchange request is a signed `GET`. Nothing in the code places, changes or cancels an
+  order, or moves funds. A read-only key couldn't do that anyway.
+- **What it reads.** On Binance: `/fapi/v3/account`, `/fapi/v2/positionRisk`, `/fapi/v1/userTrades`, `/fapi/v1/income`,
+  `/fapi/v1/openOrders`, `/fapi/v1/openAlgoOrders`, `/fapi/v1/forceOrders`, `/fapi/v1/feeBurn` and
+  `/fapi/v1/apiTradingStatus`. On Bybit: `/v5/account/*`, `/v5/position/list`, `/v5/execution/list` and
+  `/v5/order/realtime`. See [`src/core/binance.ts`](src/core/binance.ts) and [`src/core/bybit.ts`](src/core/bybit.ts).
+- **What leaves the server.** Only the computed report, and it's anonymous: no keys, no account IDs, and no server IP,
+  even in error messages ([`scrub.ts`](src/core/scrub.ts)).
+- **Other calls.** Public price candles for the benchmark, and coin icons from CoinGecko or CoinCap for coins missing from
+  the bundled set.
 
 <br>
 
@@ -296,6 +335,19 @@ import { buildReports } from 'trading-analytics/core/report.js';
 - **Returns are time-weighted.** A deposit doesn't count as profit, and a withdrawal doesn't count as a loss.
 - **Visitors share one build.** It stays well inside the exchanges' limits: a report costs about 1000 of Binance's 2400
   weight per minute. When an exchange has a bad moment, the last good report is served.
+
+<br>
+
+## Scope and ideas
+
+Today it covers **crypto USDⓈ-M futures on Binance and Bybit**. It doesn't cover spot, stocks or other brokers.
+
+Pull requests are welcome. The ones that would help most:
+
+- **More exchanges**, such as OKX. A new source maps its fills and income into the same shape (see
+  [`bybit-map.ts`](src/core/bybit-map.ts)).
+- **CSV import**, for brokers without an API.
+- **More languages.** Every string is in [`web/copy.js`](web/copy.js).
 
 <br>
 
