@@ -5,12 +5,13 @@
 **A live, public analytics page for your Binance and Bybit futures account.**<br>
 Add read-only keys, run one command, and share the link.
 
-[**Live demo → backticks.io**](https://backticks.io)&nbsp;&nbsp;·&nbsp;&nbsp;[Quick start](#quick-start)&nbsp;&nbsp;·&nbsp;&nbsp;[Is it safe?](#is-it-safe-to-give-it-my-keys)&nbsp;&nbsp;·&nbsp;&nbsp;[What's on the page](#whats-on-the-page)&nbsp;&nbsp;·&nbsp;&nbsp;[Make it yours](#make-it-yours-without-forking)
+[**Live demo → backticks.io**](https://backticks.io)&nbsp;&nbsp;·&nbsp;&nbsp;[Quick start](#quick-start)&nbsp;&nbsp;·&nbsp;&nbsp;[Is it safe?](#is-it-safe-to-give-it-my-keys)&nbsp;&nbsp;·&nbsp;&nbsp;[What's on the page](#whats-on-the-page)&nbsp;&nbsp;·&nbsp;&nbsp;[Make it yours](#make-it-yours-without-forking)&nbsp;&nbsp;·&nbsp;&nbsp;[Community chat](https://t.me/+Os74gm5U_ys4NDZi)
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-3ddc97?style=flat-square)](LICENSE)
 ![Node](https://img.shields.io/badge/node-%E2%89%A518.18-3ddc97?style=flat-square)
 ![Exchanges](https://img.shields.io/badge/exchanges-Binance%20%C2%B7%20Bybit-3ddc97?style=flat-square)
 ![Keys](https://img.shields.io/badge/keys-read--only-3ddc97?style=flat-square)
+[![Community chat](https://img.shields.io/badge/chat-Telegram-3ddc97?style=flat-square&logo=telegram&logoColor=white)](https://t.me/+Os74gm5U_ys4NDZi)
 
 <br>
 
@@ -341,6 +342,8 @@ import { buildReports } from 'trading-analytics/core/report.js';
 ## Scope and ideas
 
 Today it covers **crypto USDⓈ-M futures on Binance and Bybit**. It doesn't cover spot, stocks or other brokers.
+
+Questions, ideas and setups: join the [community chat on Telegram](https://t.me/+Os74gm5U_ys4NDZi).
 
 Pull requests are welcome. The ones that would help most:
 
