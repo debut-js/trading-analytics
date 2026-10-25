@@ -79,8 +79,6 @@ time, and every block follows the window and exchange you pick.
 
 ### 1 · The result
 
-<img src="docs/screenshots/chart.png" alt="Profit chart" width="100%">
-
 The headline numbers come first: return, trades, win rate, profit factor and max drawdown. The main chart under them
 has four modes:
 
