@@ -1,0 +1,32 @@
+{
+  "name": "trading-analytics",
+  "version": "0.1.0",
+  "description": "A live, public analytics page for a Binance and Bybit futures account, from read-only API keys.",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/plugin.js",
+  "types": "dist/plugin.d.ts",
+  "exports": { ".": "./dist/plugin.js", "./server": "./dist/server.js" },
+  "bin": { "trading-analytics": "dist/server.js" },
+  "files": ["dist", "web", "demo"],
+  "engines": { "node": ">=18.18" },
+  "repository": { "type": "git", "url": "git+https://github.com/debut-js/trading-analytics.git" },
+  "keywords": ["binance", "bybit", "futures", "trading", "analytics", "dashboard", "pnl", "drawdown"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "prepare": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "demo": "DEMO=1 tsx src/server.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@web3icons/core": "^4.0.58",
+    "fastify": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.5.0"
+  }
+}

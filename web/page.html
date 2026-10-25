@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index,follow">
+<!--slot:meta-->
+<title>__TITLE__</title>
+<meta name="description" content="Live results of a futures account on Binance and Bybit: return, drawdown, risk and every trade, after fees and funding.">
+<link rel="canonical" href="__SITE__/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="__TITLE__">
+<meta property="og:url" content="__SITE__/">
+<!--/slot:meta-->
+<meta name="theme-color" content="#0b0d0f">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/binance-dashboard/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/binance-dashboard/page.css">
+<script src="/binance-dashboard/head.js"></script>
+<script defer src="/binance-dashboard/format.js"></script>
+<script defer src="/binance-dashboard/copy.js"></script>
+<!--slot:head--><!--/slot:head-->
+<script defer src="/binance-dashboard/page.js"></script>
+<!-- trading-analytics: served by src/plugin.ts. Every figure is filled in by page.js from /binance-dashboard/report. -->
+</head>
+<body>
+<!--slot:body-start-->
+<!--/slot:body-start-->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-info" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor"/><path d="M8 7v4.5M8 4.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" fill="none"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 16 16"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-close" viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-sort" viewBox="0 0 16 16"><path d="M5 10V3M3 5l2-2 2 2M11 6v7M9 11l2 2 2-2" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-truncated" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 2.5a5.5 5.5 0 0 1 0 11z" fill="currentColor"/></symbol>
+  <symbol id="i-open" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.5" fill="currentColor"/></symbol>
+  <symbol id="i-logo" viewBox="0 0 32 32"><rect x="5" y="17" width="5.5" height="10" rx="1.5" fill="currentColor" opacity=".55"/><rect x="13.25" y="11" width="5.5" height="16" rx="1.5" fill="currentColor" opacity=".8"/><rect x="21.5" y="5" width="5.5" height="22" rx="1.5" fill="currentColor"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 16 16"><path d="M1.5 8s2.5-4.5 6.5-4.5S14.5 8 14.5 8 12 12.5 8 12.5 1.5 8 1.5 8Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8" cy="8" r="2" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 16 16"><path d="M4 2h8v12l-2-1.2L8 14l-2-1.2L4 14V2Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M6 6h4M6 8.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
+  <symbol id="i-telegram" viewBox="0 0 16 16"><path d="M14.2 2.3 1.9 7.1c-.7.3-.7.7-.1.9l3.1 1 1.2 3.7c.1.4.3.5.6.3l1.7-1.4 3.2 2.4c.6.3 1 .1 1.1-.5l2.1-9.9c.2-.8-.3-1.1-.9-.8Z" fill="currentColor"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <!-- exchange marks from @web3icons/core (MIT), fills as the brands draw them; OKX takes the tile's colour -->
+  <symbol id="i-binance" viewBox="0 0 24 24"><path fill="#F0B90B" d="m7.068 12-2.03 2.03L3.003 12l2.03-2.03zm4.935-4.935 3.482 3.483 2.03-2.03L12.003 3 6.485 8.518l2.03 2.03zm6.964 2.905L16.937 12l2.03 2.03 2.03-2.03zm-6.964 6.965L8.52 13.452l-2.03 2.03L12.003 21l5.512-5.518-2.03-2.03zm0-2.905 2.03-2.03-2.03-2.03L9.967 12z"/></symbol>
+  <symbol id="i-okx" viewBox="0 0 24 24"><path fill="currentColor" d="M8.28 9.3H3.12a.12.12 0 0 0-.12.12v5.16a.12.12 0 0 0 .12.12h5.16a.12.12 0 0 0 .12-.12V9.42a.12.12 0 0 0-.12-.12M6.6 12.78a.12.12 0 0 1-.12.12H4.92a.12.12 0 0 1-.12-.12v-1.56a.12.12 0 0 1 .12-.12h1.56a.12.12 0 0 1 .12.12zm12.481-1.68h-1.56a.12.12 0 0 0-.12.12v1.56c0 .066.054.12.12.12h1.56a.12.12 0 0 0 .12-.12v-1.56a.12.12 0 0 0-.12-.12M17.28 9.3h-1.56a.12.12 0 0 0-.12.12v1.56c0 .066.054.12.12.12h1.56a.12.12 0 0 0 .12-.12V9.42a.12.12 0 0 0-.12-.12m3.6 0h-1.56a.12.12 0 0 0-.12.12v1.56c0 .066.054.12.12.12h1.56a.12.12 0 0 0 .12-.12V9.42a.12.12 0 0 0-.12-.12m-3.6 3.6h-1.56a.12.12 0 0 0-.12.12v1.56c0 .066.054.12.12.12h1.56a.12.12 0 0 0 .12-.12v-1.56a.12.12 0 0 0-.12-.12m3.6 0h-1.56a.12.12 0 0 0-.12.12v1.56c0 .066.054.12.12.12h1.56a.12.12 0 0 0 .12-.12v-1.56a.12.12 0 0 0-.12-.12m-6.301-3.6h-1.56a.12.12 0 0 0-.12.12v1.56c0 .066.054.12.12.12h1.56a.12.12 0 0 0 .12-.12V9.42a.12.12 0 0 0-.12-.12m0 3.6h-1.56a.12.12 0 0 0-.12.12v1.56c0 .066.054.12.12.12h1.56a.12.12 0 0 0 .12-.12v-1.56a.12.12 0 0 0-.12-.12m-1.68-1.681a.12.12 0 0 0-.12-.12h-1.68V9.42a.12.12 0 0 0-.12-.12h-1.56a.12.12 0 0 0-.12.12v5.157a.12.12 0 0 0 .12.12h1.56a.12.12 0 0 0 .12-.12v-1.678h1.68a.12.12 0 0 0 .12-.12z"/></symbol>
+  <symbol id="i-bybit" viewBox="0 0 24 24"><path fill="#F6A500" d="M15.829 13.626V9h.93v4.626z"/> <path fill="#fff" d="M4.993 15H3v-4.626h1.913c.93 0 1.471.507 1.471 1.3 0 .513-.348.845-.588.955.287.13.655.423.655 1.04 0 .863-.609 1.33-1.458 1.33m-.154-3.82h-.91v1.065h.91c.395 0 .615-.214.615-.533 0-.317-.22-.532-.615-.532m.06 1.877h-.97v1.137h.97c.42 0 .622-.259.622-.571s-.201-.565-.622-.565zm4.388.046V15h-.923v-1.898l-1.431-2.728h1.01l.889 1.864.877-1.864h1.01zM13.355 15h-1.993v-4.626h1.913c.93 0 1.47.507 1.47 1.3 0 .513-.347.845-.588.955.287.13.655.423.655 1.04 0 .863-.608 1.33-1.457 1.33m-.155-3.82h-.91v1.065h.91c.395 0 .616-.214.616-.533 0-.317-.22-.532-.616-.532m.06 1.877h-.97v1.137h.97c.422 0 .622-.259.622-.571s-.2-.565-.622-.565zm6.495-1.876V15h-.929v-3.82h-1.245v-.806H21v.806z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5V8l2.5 1.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap top-in">
+    <!--slot:brand-->
+<a class="brand" href="/"><svg class="logo" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg><span>__BRAND__</span></a><!--/slot:brand-->
+    <nav class="nav" data-i18n-attr="aria-label:aria.nav" aria-label="Main">
+      <a class="opt" href="#results" data-i18n="nav.results">Live results</a>
+      <!--slot:nav-->
+<!--/slot:nav-->
+      <div class="lang" id="lang" role="group" data-i18n-attr="aria-label:aria.lang" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button><button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO: the account curve runs across the background and ends in the net figure -->
+<section class="hero" id="hero">
+  <svg class="hero-curve" id="hero-curve" aria-hidden="true" focusable="false"></svg>
+  <div class="wrap hero-in">
+    <div class="hero-copy">
+      <!--slot:hero-copy-->
+<h1 data-i18n="h1">__TITLE__</h1>
+      <p class="sub" data-i18n="sub">Live results of a futures account: return, drawdown and every trade, after fees and funding.</p>
+      <!--/slot:hero-copy-->
+          </div>
+    <div class="hero-fig">
+      <span class="live-badge"><i aria-hidden="true"></i><span id="hero-badge" data-i18n="badge.live">Live</span></span>
+      <p class="fig-label" id="fig-label">Net profit, all time</p>
+      <div class="fig-row"><p class="fig-value tab" id="hero-net">—</p><span class="fig-pct tab" id="hero-pct"></span></div>
+    </div>
+    <!-- the key figures close the first screen, four equal columns -->
+    <div class="band-grid" id="band">
+      <div class="kp" id="kp-days"><span class="kp-l" data-i18n="fig.days">Trading days</span><b class="kp-v tab">—</b><span class="kp-s tab">&nbsp;</span></div>
+      <div class="kp" id="kp-trades"><span class="kp-l" data-i18n="fig.trades">Trades</span><b class="kp-v tab">—</b><span class="kp-s tab">&nbsp;</span></div>
+      <div class="kp" id="kp-cap"><span class="kp-l" data-i18n="fig.cap">Tracked capital</span><b class="kp-v tab">—</b><span class="kp-s tab">&nbsp;</span></div>
+      <div class="kp kp-vol" id="hero-vol" hidden></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE RESULTS: the period and exchange filters drive everything below the hero -->
+<section class="sec first" id="results">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2 data-i18n="results.h2">Live results</h2>
+        <p class="lead" data-i18n="results.lead">Return, risk and where the result came from, straight from the exchange accounts.</p>
+      </div>
+      <p class="status wait" id="status"><i aria-hidden="true"></i><span id="status-text">Loading live data…</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- the report: one sticky bar of filters over every section they drive -->
+<div class="report" id="report">
+<div class="filter-bar" id="filter-bar">
+  <div class="wrap">
+    <div class="filters">
+      <div class="dd" id="dd-window"><button type="button" class="dd-btn" aria-haspopup="true" aria-expanded="false"><span class="dd-l"></span><svg aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></button><div class="dd-menu" hidden>
+      <div class="seg" id="seg-window" role="group" data-i18n-attr="aria-label:aria.period" aria-label="Period">
+        <button type="button" data-w="30d" aria-pressed="false" data-i18n="win.30d">30 days</button>
+        <button type="button" data-w="60d" aria-pressed="false" data-i18n="win.60d">60 days</button>
+        <button type="button" data-w="ytd" aria-pressed="false" data-i18n="win.ytd">This year</button>
+        <button type="button" data-w="all" aria-pressed="true" data-i18n="win.all">All time</button>
+      </div>
+      </div></div>
+      <div class="dd" id="dd-source" hidden><button type="button" class="dd-btn" aria-haspopup="true" aria-expanded="false"><span class="dd-l"></span><svg aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></button><div class="dd-menu" hidden>
+      <div class="seg" id="seg-source" role="group" data-i18n-attr="aria-label:aria.exchange" aria-label="Exchange">
+        <button type="button" data-src="all" aria-pressed="true" data-i18n="src.all">All exchanges</button>
+        <button type="button" data-src="binance" aria-pressed="false">Binance</button>
+        <button type="button" data-src="bybit" aria-pressed="false">Bybit</button>
+      </div>
+      </div></div>
+    </div>
+    <!--slot:bar-cta-->
+<!--/slot:bar-cta-->
+  </div>
+</div>
+<section class="sec flush" id="results-body">
+  <div class="wrap">
+    <div class="panel chart-panel">
+      <div class="chart-head">
+        <div>
+          <div class="ttl"><p class="ch-label" id="ch-label">Net profit · All time</p><span class="info" tabindex="0" role="button" data-i18n-attr="aria-label:aria.info" aria-label="What this shows"><svg aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span class="tip" role="tooltip" id="ch-tip"></span></span></div>
+          <p class="ch-value tab" id="ch-value">—</p>
+        </div>
+        <div class="chart-ctrl">
+        <div class="toggle" id="mode" role="group" data-i18n-attr="aria-label:aria.mode" aria-label="Chart">
+          <button type="button" data-mode="cum" aria-pressed="true" data-i18n="mode.cum">Profit</button>
+          <button type="button" data-mode="daily" aria-pressed="false" data-i18n="mode.daily">By period</button>
+          <button type="button" data-mode="dd" aria-pressed="false" data-i18n="mode.dd">Drawdown</button>
+          <button type="button" data-mode="use" aria-pressed="false" data-i18n="mode.use">Capital load</button>
+        </div>
+        <div class="ctrl-row">
+          <div class="mini" id="scale" role="group" data-i18n-attr="aria-label:aria.scale" aria-label="Scale"><button type="button" data-sc="usd" aria-pressed="false">$</button><button type="button" data-sc="pct" aria-pressed="true">%</button></div>
+          <div class="mini gone" id="gran" role="group" aria-label="Period"><button type="button" data-g="day" aria-pressed="true" data-i18n="gran.day">Day</button><button type="button" data-g="week" aria-pressed="false" data-i18n="gran.week">Week</button><button type="button" data-g="month" aria-pressed="false" data-i18n="gran.month">Month</button><button type="button" data-g="quarter" aria-pressed="false" data-i18n="gran.quarter">Quarter</button><button type="button" data-g="year" aria-pressed="false" data-i18n="gran.year">Year</button></div>
+          <div class="cmp" id="cmp" hidden>
+            <button type="button" class="cmp-btn" id="cmp-btn" aria-haspopup="listbox" aria-expanded="false"><span id="cmp-label" data-i18n="cmp.btn">Compare</span><svg aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></button>
+            <div class="cmp-menu" id="cmp-menu" role="listbox" hidden></div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <p class="readout tab" id="readout">&nbsp;</p>
+      <div class="chart" id="chart"><svg id="chart-svg" role="img" aria-label="Net profit by day"></svg><p class="empty" id="chart-empty" hidden data-i18n="chart.empty">No days in this period yet.</p></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi" id="kpi-ret"><span class="l" data-i18n="kpi.ret">Return</span><span class="v tab">—</span><span class="s">&nbsp;</span></div>
+      <div class="kpi" id="kpi-n"><span class="l" data-i18n="kpi.n">Trades</span><span class="v tab">—</span><span class="s">&nbsp;</span></div>
+      <div class="kpi" id="kpi-wr"><span class="l" data-i18n="kpi.wr">Win rate</span><span class="v tab">—</span><span class="s">&nbsp;</span></div>
+      <div class="kpi" id="kpi-pf"><span class="l" data-i18n="kpi.pf">Profit factor</span><span class="v tab">—</span><span class="s">&nbsp;</span></div>
+      <div class="kpi" id="kpi-dd"><span class="l" data-i18n="kpi.dd">Max drawdown</span><span class="v tab">—</span><span class="s">&nbsp;</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="positions">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 data-i18n="pos.h2">Open positions</h2><p class="lead" data-i18n="pos.lead">Live right now, with the stop and the target of each.</p></div></div>
+    <div class="panel list" id="pos-list"></div>
+  </div>
+</section>
+
+<section class="sec" id="flow">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 data-i18n="flow.h2">Where the result came from</h2><p class="lead" data-i18n="flow.lead">Fees and funding, the exchanges, the days and the coins behind the result.</p></div></div>
+    <div class="flow-two">
+    <div class="panel store">
+      <div class="panel-head"><div class="ttl"><h3 data-i18n="flow.h3">From gross to net</h3><span class="info" tabindex="0" role="button" data-i18n-attr="aria-label:aria.info" aria-label="What this shows"><svg aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span class="tip" role="tooltip" data-i18n="tip.flow"></span></span></div></div>
+      <p class="ph-sub tab" id="fl-note">&nbsp;</p>
+      <div class="store-bar" id="fl-bar"></div>
+    </div>
+    <!-- traded volume by exchange, beside the waterfall -->
+    <div class="panel vx">
+      <div class="panel-head"><div class="ttl"><h3 data-i18n="vx.h3">Volume by exchange</h3><span class="info" tabindex="0" role="button" data-i18n-attr="aria-label:aria.info" aria-label="What this shows"><svg aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span class="tip" role="tooltip" data-i18n="tip.vx"></span></span></div></div>
+      <p class="ph-sub tab" id="vx-note">&nbsp;</p>
+      <div id="vx-body"></div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="days">
+  <div class="wrap">
+  <div class="two">
+    <div class="panel">
+      <div class="panel-head"><div class="ttl"><h3 data-i18n="days.h3">Daily results</h3><span class="info" tabindex="0" role="button" data-i18n-attr="aria-label:aria.info" aria-label="What this shows"><svg aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span class="tip" role="tooltip" data-i18n="tip.days"></span></span></div><div class="pager cal-pager" id="cal-pager"><span class="tab" id="cal-pos"></span><button type="button" class="arrow-btn" id="cal-prev" data-i18n-attr="aria-label:aria.calPrev" aria-label="Previous month"><svg aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></button><button type="button" class="arrow-btn next" id="cal-next" data-i18n-attr="aria-label:aria.calNext" aria-label="Next month"><svg aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></button></div></div>
+      <div id="cal"></div>
+      <div class="rows" id="day-rows"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><div class="ttl"><h3 data-i18n="mk.h3">Traded coins</h3><span class="info" tabindex="0" role="button" data-i18n-attr="aria-label:aria.info" aria-label="What this shows"><svg aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span class="tip" role="tooltip" data-i18n="tip.mk"></span></span></div><div class="mk-ctrl"><div class="seg small mk-view" id="mk-view" role="group" data-i18n-attr="aria-label:aria.view" aria-label="View"><button type="button" data-v="list" aria-pressed="false" data-i18n-attr="aria-label:mk.list" aria-label="List"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5.5 4h8M5.5 8h8M5.5 12h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="2.5" cy="4" r="1" fill="currentColor"/><circle cx="2.5" cy="8" r="1" fill="currentColor"/><circle cx="2.5" cy="12" r="1" fill="currentColor"/></svg></button><button type="button" data-v="heat" aria-pressed="true" data-i18n-attr="aria-label:mk.heat" aria-label="Heatmap"><svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><rect x="1.75" y="1.75" width="6.5" height="7.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="1.75" width="4.25" height="4.5" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1.75" y="11" width="6.5" height="3.25" rx="1.25" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="8" width="4.25" height="6.25" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button></div><span class="vsep" aria-hidden="true"></span><div class="dd mk-dd" id="mk-by"><button type="button" class="dd-btn" aria-haspopup="true" aria-expanded="false"><span class="dd-l"></span><svg aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></button><div class="dd-menu" hidden><div class="seg small" role="group"><button type="button" data-by="pnl" aria-pressed="true" data-i18n="mk.byPnl">PnL</button><button type="button" data-by="vol" aria-pressed="false" data-i18n="mk.byVol">Volume</button><button type="button" data-by="wr" aria-pressed="false" data-i18n="mk.byWr">Win rate</button></div></div></div></div></div>
+      <div class="mk-list" id="mk-list" hidden></div>
+      <div class="mk-heat" id="mk-heat"></div>
+      <div class="pager" id="mk-pager" hidden><span class="tab" id="mk-pos"></span><button type="button" class="arrow-btn" id="mk-prev" aria-label="Previous coins"><svg aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></button><button type="button" class="arrow-btn next" id="mk-next" aria-label="Next coins"><svg aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></button></div>
+    </div>
+  </div>
+      <div class="panel wide year-panel"><div class="panel-head act-head"><div class="ttl"><h3 data-i18n="act.h3">Year at a glance</h3><span class="info" tabindex="0" role="button" data-i18n-attr="aria-label:aria.info" aria-label="What this shows"><svg aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span class="tip" role="tooltip" data-i18n="tip.act"></span></span></div><div class="act-meta"><span id="act-sub"></span><span class="act-legend"><i class="u2"></i><span data-i18n="act.up">Profit</span><i class="d2"></i><span data-i18n="act.dn">Loss</span><i class="l0"></i><span data-i18n="act.none">No trades</span></span></div></div><div class="act-scroll" id="act-scroll"><div id="act"></div></div></div>
+  </div>
+</section>
+
+<section class="sec" id="analytics">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 data-i18n="an.h2">How the trades behave</h2><p class="lead" data-i18n="an.lead">What wins, what loses, and when.</p></div></div>
+    <div class="an-grid">
+      <div class="panel chart-panel big wide">
+        <div class="chart-head">
+          <div><div class="ttl"><h3 class="card-h3" data-i18n="ta.h3">Breakdown</h3><span class="info" tabindex="0" role="button" data-i18n-attr="aria-label:aria.info" aria-label="What this shows"><svg aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span class="tip" role="tooltip" id="ta-tip"></span></span></div><p class="readout tab" id="ta-note">&nbsp;</p></div>
+          <div class="toggle" id="ta-mode" role="group" data-i18n-attr="aria-label:aria.mode" aria-label="Chart">
+            <button type="button" data-ta="hold" aria-pressed="false" data-i18n="ta.hold">Hold vs result</button>
+            <button type="button" data-ta="hour" aria-pressed="false" data-i18n="ta.hour">By time</button>
+            <button type="button" data-ta="dur" aria-pressed="false" data-i18n="ta.dur">Holding time</button>
+            <button type="button" data-ta="dist" aria-pressed="true" data-i18n="ta.dist">Returns</button>
+            <button type="button" data-ta="side" aria-pressed="false" data-i18n="ta.side">Long vs short</button>
+            <button type="button" data-ta="streak" aria-pressed="false" data-i18n="ta.streak">Streaks</button>
+          </div>
+        </div>
+        <div class="big-plot" id="ta-chart"></div>
+      </div>
+      <div class="rail wide" id="ta-rail"></div>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="risk">
+  <div class="wrap">
+    <div class="sec-head"><div><h2 data-i18n="risk.h2">Risk</h2><p class="lead" data-i18n="risk.lead">How deep it fell, how much it swings, and the same for simply holding a large coin.</p></div><div class="dd rk-dd" id="rk-cmp" hidden><button type="button" class="dd-btn" aria-haspopup="true" aria-expanded="false"><span class="dd-l"></span><svg aria-hidden="true" focusable="false"><use href="#i-chevron"/></svg></button><div class="dd-menu" hidden><div class="seg small" role="group" id="rk-cmp-list"></div></div></div></div>
+    <div class="panel rk">
+      <div class="rk-uw">
+        <div class="rk-head"><div class="ttl"><p class="ch-label" id="rk-label" data-i18n="rk.uw">Largest drawdown</p><span class="info" tabindex="0" role="button" data-i18n-attr="aria-label:aria.info" aria-label="What this shows"><svg aria-hidden="true" focusable="false"><use href="#i-info"/></svg><span class="tip" role="tooltip" id="rk-tip" data-i18n="rk.uw.tip"></span></span></div><div class="seg small" id="rk-view" role="group" data-i18n-attr="aria-label:aria.view" aria-label="View"><button type="button" data-v="dd" aria-pressed="true" data-i18n="rk.v.dd">Drawdown</button><button type="button" data-v="corr" aria-pressed="false" data-i18n="rk.v.corr">Correlation</button></div></div>
+        <p class="ch-value tab" id="rk-dd">—</p>
+        <p class="readout tab" id="rk-dd-sub">&nbsp;</p>
+        <div class="chart" id="rk-chart"><svg id="rk-svg" role="img" data-i18n-attr="aria-label:rk.uw" aria-label="Drawdown"></svg></div>
+        <p class="rk-key" id="rk-key"><i class="k-acct"></i><span data-i18n="rk.acct">Account</span><i class="k-btc"></i><span id="rk-bm-name">Bitcoin</span></p>
+      </div>
+      <div class="rk-rows" id="rk-rows"></div>
+    </div>
+  </div>
+</section>
+
+<!--slot:sections-->
+<!--/slot:sections-->
+
+<section class="sec" id="trades">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2 data-i18n="tr.h2">Trades history</h2><p class="lead" data-i18n="tr.lead">Every closed trade, newest first, after fees.</p></div>
+      <div class="streaks" id="tr-streaks"></div>
+      <div class="seg small" id="trade-filter" role="group" data-i18n-attr="aria-label:aria.filter" aria-label="Show">
+        <button type="button" data-f="all" aria-pressed="true" data-i18n="tr.all">All</button>
+        <button type="button" data-f="win" aria-pressed="false" data-i18n="tr.win">Wins</button>
+        <button type="button" data-f="loss" aria-pressed="false" data-i18n="tr.loss">Losses</button>
+      </div>
+    </div>
+    <div class="panel oc" id="tr-oc" hidden></div>
+    <div class="panel list" id="trade-list"></div>
+    <div class="list-foot">
+      <span class="count tab" id="trade-count"></span>
+      <button type="button" class="link-btn" id="trade-more" hidden data-i18n="tr.more">Show more</button>
+      <button type="button" class="link-btn" id="trade-csv" hidden data-i18n="tr.csv">Download CSV</button>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <!--slot:foot-brand-->
+<span class="foot-brand"><svg class="logo" aria-hidden="true" focusable="false"><use href="#i-logo"/></svg>__BRAND__</span><!--/slot:foot-brand-->
+    <span data-i18n="foot.note">Live account data · after fees and funding · updated every five minutes</span>
+    <span class="foot-credit"><span data-i18n="foot.logos">Coin logos:</span> <a href="https://www.coingecko.com" target="_blank" rel="noopener">CoinGecko</a></span>
+  </div>
+</footer>
+
+<div class="banner" id="banner" role="alert" hidden><span id="banner-text"></span><button type="button" id="banner-retry" data-i18n="err.retry">Retry</button></div>
+</body>
+</html>
