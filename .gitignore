@@ -1,5 +1,5 @@
 node_modules/
-dist/
 .env
 *.log
 .DS_Store
+# dist/ is committed: the package installs from a git tag without a build step

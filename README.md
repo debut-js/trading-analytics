@@ -12,7 +12,7 @@ win and loss streaks, and every closed trade. English and Russian, dark, no trac
 git clone https://github.com/debut-js/trading-analytics.git
 cd trading-analytics
 cp .env.example .env        # put your read-only keys in
-npm install && npm run build && npm start
+npm install && npm start
 ```
 
 Open http://localhost:3000.
@@ -98,7 +98,10 @@ await app.register(tradingAnalytics, {
 await app.listen({ port: 3000 });
 ```
 
-Install from GitHub at a tag: `npm i github:debut-js/trading-analytics#v0.1.0`.
+Install from GitHub at a tag: `npm i github:debut-js/trading-analytics#v0.1.1`. The built `dist/` is committed, so nothing
+is compiled on install; run `npm run build` before committing a change to `src/`.
+
+The core is importable too: `import { buildReports } from 'trading-analytics/core/report.js'`.
 
 ## How it works
 
