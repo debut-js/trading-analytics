@@ -98,7 +98,7 @@ await app.register(tradingAnalytics, {
 await app.listen({ port: 3000 });
 ```
 
-Install from GitHub at a tag: `npm i github:debut-js/trading-analytics#v0.1.1`. The built `dist/` is committed, so nothing
+Install from GitHub at a tag: `npm i github:debut-js/trading-analytics#v0.1.2`. The built `dist/` is committed, so nothing
 is compiled on install; run `npm run build` before committing a change to `src/`.
 
 The core is importable too: `import { buildReports } from 'trading-analytics/core/report.js'`.
