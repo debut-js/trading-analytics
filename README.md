@@ -68,7 +68,7 @@ Create **read-only** keys. The page never needs to trade or withdraw.
 | **Binance** | API Management → Create API | *Enable Reading* only. An IP restriction is recommended. |
 | **Bybit** *(optional)* | API → Create New Key → System-generated | *Read-Only* |
 
-The keys stay in `.env` on the server. The browser gets only the computed report: no keys and no account IDs.
+The keys stay in `.env` on the server. The browser gets only the computed report, which is anonymous: no keys, no account IDs, no server address.
 
 <br>
 
@@ -81,8 +81,8 @@ time, and every block follows the window and exchange you pick.
 
 <img src="docs/screenshots/chart.png" alt="Profit chart" width="100%">
 
-The headline numbers come first: net profit, the number of trades, the win rate and the largest drawdown. The main chart
-under them has four modes:
+The headline numbers come first: return, trades, win rate, profit factor and max drawdown. The main chart under them
+has four modes:
 
 | Mode | Shows |
 |---|---|
